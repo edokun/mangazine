@@ -10,7 +10,7 @@ manga will be downloaded with structure manga_name/chapter_number/file_name(3 di
 if not provided will download on user's home directory
 
 info <mangaId> will get general information of the manga
--
+(should show name, status, number of chapters)
 
 
 Global optional parameters:

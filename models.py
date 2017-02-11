@@ -1,8 +1,5 @@
 class Chapter:
 
-    chapter_id = 0
-    name = ""
-
     def __init__(self, chapter_id=0, name=""):
         self.chapter_id = chapter_id
         self.name = name
@@ -15,18 +12,6 @@ class Chapter:
         return chapter
 
 class Manga:
-
-    # Attributes
-    name = ""
-    href = ""
-    author = []
-    artist = []
-    status = ""
-    genres = []
-    info = ""
-    cover_url = ""
-    last_update = ""
-    chapters = []
 
     def __init__(self, name="", href="", author=None, artist=None, status="",
                  genres=None, cover_url="", info="", last_update="",
@@ -78,3 +63,12 @@ class Manga:
             manga.chapters.append(chapterObject)
 
         return manga
+
+    def print_general_info(self):
+        print("Manga details:")
+        print("Name: ", self.name)
+        print("Author: ", self.author)
+        print("Artist: ", self.artist)
+        print("Status: ", self.status)
+        print("Genres: ", self.genres)
+        print("Number of chapters: ", len(self.chapters))

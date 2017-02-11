@@ -1,48 +1,11 @@
-mangaDownloader
-mangaTool.py -d seinto-oniisan -c 1 -f /home/edokun/downloads -s mangafox
 
-mangaTool.py
-mangaDownloader
-mangaDownload
+mangaTool.py -d seinto-oniisan -c 1 -f /home/edokun/downloads -s mangafox
 
 features
 download manga
 convert manga to cbz
 use by cli or gui
 store settings in a file
-
-
-import requests
-import Manga
-
-# class MangaScrapperAPI:
-# SITE_MANGA_READER = "mangareader.net"
-# SITE_MANGA_FOX = "mangafox.me"
-# SITE_MANGA_STREAM = "mangastream.com"
-
-API_BASE_URL = "https://doodle-manga-scraper.p.mashape.com"
-API_KEY = "Mz7D0J6UuGmshhNukoJLus4IEzcIp1vc7DpjsnDxy25VptIsAi"
-X_MASHAPE_KEY = "wrIpZCP7H2mshF7sHe18Vo7LfYQRp1pU0AajsnA0FHrI0zQlWk"
-
-def get_manga(site, manga_id):
-    url = API_BASE_URL + "/" + site + "/manga/" + manga_id
-    print("Calling the URL: " + url)
-    response = requests.get(url,
-      headers={
-        "X-Mashape-Key": X_MASHAPE_KEY,
-        "Accept": "text/plain"
-      }
-    )
-
-    # parsed_json = response.json()
-    # print(parsed_json['info'])
-
-    manga = Manga.from_json(response.json())
-    print(manga.name)
-
-
-get_manga("mangafox.me", "evil-heart")
-
 
 
 

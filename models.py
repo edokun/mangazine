@@ -1,3 +1,29 @@
+class ChapterInfo:
+
+    def __init__(self, href="", name="", pages=[], lastupdate=""):
+        self.href = href
+        self.name = name
+        self.pages = pages
+        self.lastupdate = lastupdate
+
+    @staticmethod
+    def from_json(json_object):
+        chapterInfo = ChapterInfo()
+        chapterInfo.href = json_object['href']
+        chapterInfo.name = json_object['name']
+        chapterInfo.pages = json_object['pages']
+        return chapterInfo
+
+    def print_general_info(self):
+        print("Chapter details:")
+        print("href: ", self.href)
+        print("name: ", self.name)
+        print("lastupdate: ", self.lastupdate)
+        print("pages: ", self.pages)
+        print("Number of pages: ", len(self.pages))
+
+
+
 class Chapter:
 
     def __init__(self, chapter_id=0, name=""):

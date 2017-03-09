@@ -6,8 +6,8 @@ from utils import Source
 
 def Main():
     #manga = utils.get_manga("saint-oniisan", Source.MANGAFOX)
-    #manga = utils.get_chapter_info("saint-oniisan", 1, Source.MANGASTREAM)
-    utils.test_scrapper()
+    manga = utils.get_chapter_info("saint-oniisan", 1, Source.MANGAREADER)
+    #utils.test_scrapper()
 
 if __name__ == '__main__':
     Main()

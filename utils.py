@@ -1,4 +1,5 @@
 from models import Manga
+from models import ChapterInfo
 import requests
 import bs4
 
@@ -12,16 +13,21 @@ class Source:
     MANGASTREAM = "mangastream.com"
     MANGAREADER = "mangareader.net"
 
-def get_manga(manga_id, source):
-    url = parse_url(manga_id, "", source)
-    print("Calling the URL: " + url)
-
+def __call_api(url):
     response = requests.get(url,
       headers={
         "X-Mashape-Key": __X_MASHAPE_KEY,
         "Accept": "text/plain"
       }
     )
+
+    return response
+
+
+def get_manga(manga_id, source):
+    url = parse_url(manga_id, "", source)
+    print("Calling the URL: " + url)
+    response = __call_api(url)
 
     manga = Manga.from_json(response.json())
     manga.print_general_info()
@@ -30,17 +36,11 @@ def get_manga(manga_id, source):
 def get_chapter_info(manga_id, chapter, source):
     url = parse_url(manga_id, chapter, source)
     print("Calling the URL: " + url)
-
-    response = requests.get(url,
-      headers={
-        "X-Mashape-Key": __X_MASHAPE_KEY,
-        "Accept": "text/plain"
-      }
-    )
-
-    print(response)
-
-    #manga = Manga.from_json(response.json())
+    response = __call_api(url)
+    
+    chapterInfo = ChapterInfo.from_json(response.json())
+    chapterInfo.print_general_info()
+    return chapterInfo
 
 
 def parse_url(manga_id, chapter, source):

@@ -31,3 +31,11 @@ store settings in a file
 
     args = parser.parse_args()
     print args
+
+
+def test_scrapper():
+    response = requests.get('http://es.mangahere.co/manga/saint_young_men/c1/')
+    soup = bs4.BeautifulSoup(response.text, "lxml")
+    #link = soup.select('#image').get('src')
+    img_array = [img.attrs.get('src') for img in soup.select('#image')]
+    print(img_array[0])

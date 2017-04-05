@@ -25,7 +25,7 @@ def __call_api(url):
 
 
 def get_manga(manga_id, source):
-    url = parse_url(manga_id, "", source)
+    url = __parse_url(manga_id, "", source)
     print("Calling the URL: " + url)
     response = __call_api(url)
 
@@ -34,26 +34,18 @@ def get_manga(manga_id, source):
     return manga
 
 def get_chapter_info(manga_id, chapter, source):
-    url = parse_url(manga_id, chapter, source)
+    url = __parse_url(manga_id, chapter, source)
     print("Calling the URL: " + url)
     response = __call_api(url)
-    
+
     chapterInfo = ChapterInfo.from_json(response.json())
     chapterInfo.print_general_info()
     return chapterInfo
 
 
-def parse_url(manga_id, chapter, source):
+def __parse_url(manga_id, chapter, source):
     url = __MANGA_BASE_URL.replace("{mangaid}", manga_id)
     url = url.replace("{siteid}", source)
     url = url.replace("{chapterid}", str(chapter))
     print("Parsing URL: ", url)
     return url
-
-
-def test_scrapper():
-    response = requests.get('http://es.mangahere.co/manga/saint_young_men/c1/')
-    soup = bs4.BeautifulSoup(response.text, "lxml")
-    #link = soup.select('#image').get('src')
-    img_array = [img.attrs.get('src') for img in soup.select('#image')]
-    print(img_array[0])
